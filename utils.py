@@ -89,7 +89,7 @@ def nx2_figure(df, columns):
             fig.add_trace(trace, row=row, col=col_pos)
 
     # --- Dynamic height ---
-    height_per_row = 300  # tweak this
+    height_per_row = 250  # tweak this
     fig.update_layout(
         height=rows * height_per_row,
         template="plotly_white",
