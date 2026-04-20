@@ -42,7 +42,7 @@ def churn_barplot(
         name='Churn = Yes',
         marker_color='crimson',
         hovertemplate=
-            f"<b>{column_name}:</b>" + "%{x}<br>" +
+            f"<b>{column_name}:</b>" + " %{x}<br>" +
             "<b>Churn:</b> Yes<br>" +
             "<b>Count:</b> %{y}<br><extra></extra>"
     ))
@@ -53,7 +53,7 @@ def churn_barplot(
         name='Churn = No',
         marker_color='steelblue',
         hovertemplate=
-            f"<b>{column_name}:</b>" + "%{x}<br>" +
+            f"<b>{column_name}:</b>" + " %{x}<br>" +
             "<b>Churn:</b> No<br>" +
             "<b>Count:</b> %{y}<br><extra></extra>"
     ))
