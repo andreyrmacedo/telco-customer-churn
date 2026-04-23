@@ -10,8 +10,10 @@ This file has helper functions.
 #%% IMPORTS
 
 import pandas as pd
+import numpy as np
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+from scipy.stats import gaussian_kde
 
 #%% FUNCTIONS
 
@@ -98,3 +100,77 @@ def nx2_figure(df, columns):
     )
 
     return fig
+
+
+
+def churn_kde_plot(df, column_name, churn_col='Churn'):
+    fig = go.Figure()
+
+    # Split data
+    yes = df[df[churn_col] == 'Yes'][column_name].dropna()
+    no = df[df[churn_col] == 'No'][column_name].dropna()
+
+    # Create common x range
+    x_min = min(df[column_name])
+    x_max = max(df[column_name])
+    x_vals = np.linspace(x_min, x_max, 200)
+
+    # KDE
+    kde_yes = gaussian_kde(yes)
+    kde_no = gaussian_kde(no)
+
+    y_yes = kde_yes(x_vals)
+    y_no = kde_no(x_vals)
+
+    # --- YES trace ---
+    fig.add_trace(go.Scatter(
+        x=x_vals,
+        y=y_yes,
+        mode='lines',
+        name='Churn = Yes',
+        line=dict(color='crimson', width=2),
+        fill='tozeroy',
+        fillcolor='rgba(220, 20, 60, 0.25)',
+        hovertemplate=
+            f"<b>{column_name}:</b> %{{x:.2f}}<br>" +
+            "<b>Churn:</b> Yes<br>" +
+            f"<b>Density:</b> %{{y:.4f}}<extra></extra>"
+    ))
+
+    # --- NO trace ---
+    fig.add_trace(go.Scatter(
+        x=x_vals,
+        y=y_no,
+        mode='lines',
+        name='Churn = No',
+        line=dict(color='steelblue', width=2),
+        fill='tozeroy',
+        fillcolor='rgba(70, 130, 180, 0.25)',
+        hovertemplate=
+            f"<b>{column_name}:</b> %{{x:.2f}}<br>" +
+            "<b>Churn:</b> No<br>" +
+            f"<b>Density:</b> %{{y:.4f}}<extra></extra>"
+    ))
+
+    # --- Layout ---
+    fig.update_layout(
+        template='plotly_white',
+        yaxis_title='<b>Density</b>',
+        xaxis_title=f'<b>{column_name}</b>',
+        title=dict(
+            text=f'<b>Distribution of {column_name} by Churn</b>',
+            x=0.5,
+            xanchor='center',
+            font=dict(size=20)
+        ),
+        legend=dict(
+            x=1,
+            y=1,
+            xanchor='right',
+            yanchor='top'
+        )
+    )
+
+    return fig
+
+# %%
