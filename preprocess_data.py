@@ -34,5 +34,6 @@ Obs: 1.All missing values come from empty strings in 'TotalCharges'.
      2.All of them have 'No' for Churn, which is the most common value.
 """
 
-
-
+# Get dummies
+cols = [x for x in df_clean if x != 'CustomerID']
+df_dummies = pd.get_dummies(df_clean[cols], drop_first=True)
