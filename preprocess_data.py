@@ -35,5 +35,5 @@ Obs: 1.All missing values come from empty strings in 'TotalCharges'.
 """
 
 # Get dummies
-cols = [x for x in df_clean if x != 'CustomerID']
-df_dummies = pd.get_dummies(df_clean[cols], drop_first=True)
+df_dummies = pd.get_dummies(df_clean.drop(columns='CustomerID'), drop_first=True)
+df_dummies.reset_index(drop=True, inplace=True)

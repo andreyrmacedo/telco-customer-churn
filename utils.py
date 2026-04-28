@@ -122,7 +122,7 @@ def churn_kde_plot(df, column_name, churn_col='Churn'):
     y_yes = kde_yes(x_vals)
     y_no = kde_no(x_vals)
 
-    # --- YES trace ---
+    # YES trace
     fig.add_trace(go.Scatter(
         x=x_vals,
         y=y_yes,
@@ -137,7 +137,7 @@ def churn_kde_plot(df, column_name, churn_col='Churn'):
             f"<b>Density:</b> %{{y:.4f}}<extra></extra>"
     ))
 
-    # --- NO trace ---
+    # NO trace
     fig.add_trace(go.Scatter(
         x=x_vals,
         y=y_no,
@@ -152,7 +152,7 @@ def churn_kde_plot(df, column_name, churn_col='Churn'):
             f"<b>Density:</b> %{{y:.4f}}<extra></extra>"
     ))
 
-    # --- Layout ---
+    # Layout
     fig.update_layout(
         template='plotly_white',
         yaxis_title='<b>Density</b>',
