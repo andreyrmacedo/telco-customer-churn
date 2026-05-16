@@ -71,6 +71,60 @@ def churn_barplot(
 
 
 
+def churn_boxplot(
+    df: pd.DataFrame,
+    column_name: str,
+    churn_col: str = 'Churn',
+):
+    fig = go.Figure()
+
+    # --- YES trace ---
+    fig.add_trace(go.Box(
+        y=df[df[churn_col] == 'Yes'][column_name],
+        name='Yes',
+        marker_color='crimson',
+        boxpoints='outliers',
+        hovertemplate=
+            f"<b>{column_name}:</b> %{{y:.2f}}<br>" +
+            "<b>Churn:</b> Yes<br>" +
+            "<extra></extra>"
+    ))
+
+    # --- NO trace ---
+    fig.add_trace(go.Box(
+        y=df[df[churn_col] == 'No'][column_name],
+        name='No',
+        marker_color='steelblue',
+        boxpoints='outliers',
+        hovertemplate=
+            f"<b>{column_name}:</b> %{{y:.2f}}<br>" +
+            "<b>Churn:</b> No<br>" +
+            "<extra></extra>"
+    ))
+
+    # --- Layout ---
+    fig.update_layout(
+        template='plotly_white',
+        yaxis_title=f'<b>{column_name}</b>',
+        xaxis_title='<b>Churn</b>',
+        title=dict(
+            text=f'<b>{column_name} by Churn</b>',
+            x=0.5,
+            xanchor='center'
+        ),
+        showlegend=False
+        # legend=dict(
+        #     x=1,
+        #     y=1,
+        #     xanchor='right',
+        #     yanchor='top'
+        # )
+    )
+
+    return fig
+
+
+
 def nx2_figure(df, columns):
     n = len(columns)
     rows = (n + 1) // 2  # ceil division
