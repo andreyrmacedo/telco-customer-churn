@@ -1,1 +1,11 @@
 pandas
+numpy
+plotly
+matplotlib
+scikit-learn
+scipy
+xgboost
+jupyter
+notebook
+
+
