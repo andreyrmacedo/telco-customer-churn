@@ -109,6 +109,7 @@ def churn_boxplot(
         xaxis_title='<b>Churn</b>',
         title=dict(
             text=f'<b>{column_name} by Churn</b>',
+            font=dict(size=20),
             x=0.5,
             xanchor='center'
         ),
