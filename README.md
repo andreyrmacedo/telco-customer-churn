@@ -90,6 +90,7 @@ Models evaluated:
 
 ## 📁 Project Structure
 
+```plaintext
 telco-customer-churn/
 ├── data/
 ├── index.html
@@ -98,3 +99,4 @@ telco-customer-churn/
 ├── requirements.txt
 ├── telco_customer_churn.ipynb
 └── utils.py
+```
