@@ -3,12 +3,10 @@
 
 ## Live Project
 
-Explore the full interactive report:
-
 👉 **[View on GitHub Pages](https://andreyrmacedo.github.io/telco-customer-churn/)**  
 
-> ⚠️ *Note:* Plotly visualizations are fully rendered in this version.  
-> GitHub’s notebook preview does not support interactive charts.
+> ⚠️ Plotly visualizations are fully rendered in GitHub Pages.  
+> ⚠️ GitHub’s notebook preview does not support interactive charts.
 
 ---
 
